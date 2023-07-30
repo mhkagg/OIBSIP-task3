@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-color: black;
+            margin-top: 50px;
+        }
+
+        p, span{
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            margin-top: 20px;
+            color: antiquewhite;
+        }
+
+        .cont{
+            display: grid;
+            grid-template-columns: 300px 300px ;
+            grid-template-rows: 50px 50px 50px 50px ;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 140px;
+        }
+
+        textarea:focus, input:focus, button:focus, select:focus{
+    outline: none;
+}
+
+.submit{
+    grid-column: span 2;
+}
+
+.submit button{
+    font-family: 'Press Start 2P', cursive;
+width: 30%;
+height: 50px;
+background-color: green;
+}
+
+input{
+    background-color: antiquewhite;
+    border: none;
+    border-bottom: 2px solid antiquewhite;
+    color: black;
+}
+
+select{
+    background-color: antiquewhite;
+}
+
+    </style>
+</head>
+<body>
+
+<p style="font-size: xx-large;"> temperature converter </p>
+<div class="cont">
+<p> degrees</p>
+<input type="text" type="number" id="temp" autocomplete="off">
+
+<p> Type</p>
+  <select id="unit" name="unit">
+    <option value="F">F</option>
+    <option value="C">C</option>
+
+  </select>
+
+
+
+<div class="submit">
+    <center>
+<button class="submit" onclick="convert()"> submit </button>
+</center>
+</div>
+
+<p> result</p>
+<span id="result-value"></span> 
+</div>
+    <script>
+     function convert(){
+        let temp= parseFloat(document.getElementById('temp').value);
+        let option= document.getElementById('unit').value; 
+        let newval, newunit;
+
+        if(option === 'F'){
+            newval = (temp - 32) * 5/9;
+            newunit = "°C";
+        } 
+        if(option === 'C') {
+            newval= (temp* 9/5)+32;
+            newunit="°F";
+        }
+        newval = Math.round(newval * 100) / 100;
+  
+document.getElementById('result-value').textContent = newval + newunit;
+}
+
+     
+    </script>
+</body>
+</html>
